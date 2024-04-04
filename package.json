@@ -1,0 +1,60 @@
+{
+  "name": "more-types",
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts"
+    },
+    "./types": {
+      "import": "./src/types/index.js"
+    }
+  },
+  "scripts": {
+    "start": "printf '%s\\n' 'Script behaviour not specified' >&2",
+    "build": "wireit",
+    "release": "wireit",
+    "release:windows": "wireit"
+  },
+  "wireit": {
+    "build": {
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "output": [
+        "dist/package/more-types/development"
+      ],
+      "files": [
+        "src/**/*",
+        "rollup.config.js",
+        "package.json"
+      ],
+      "command": "node node_modules/rollup/dist/bin/rollup --config"
+    },
+    "release": {
+      "dependencies": [
+        "build"
+      ],
+      "command": "fd --unrestricted --full-path 'dist/package/[\\w-]+/production/package.json' --exec bash -c 'npm publish {//}'"
+    },
+    "release:windows": {
+      "dependencies": [
+        "build"
+      ],
+      "command": "pwsh -Command \"Get-ChildItem -Path 'dist/package/*/production/package.json' | ForEach-Object { npm publish $_.DirectoryName }\""
+    }
+  },
+  "dependencies": {
+    "type-fest": "^4.15.0",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "dts-bundle-generator": "^9.3.1",
+    "eslint-config-jaid": "^8.24.0",
+    "forward-slash-path": "^0.3.0",
+    "fs-extra": "^11.2.0",
+    "lodash-es": "^4.17.21",
+    "tsconfig-jaid-node": "^8.1.0",
+    "typescript": "^5.4.3"
+  }
+}
