@@ -1,1 +1,1 @@
-export type ExcludeKnownTypes<InputGeneric> = Exclude<InputGeneric, Array<RegExp | string> | RegExp | string | void | null | undefined>
+export type ExcludeKnownTypes<InputGeneric, MoreExcludes = undefined> = Exclude<InputGeneric, bigint | boolean | MoreExcludes | number | RegExp | string | void | null | undefined>
