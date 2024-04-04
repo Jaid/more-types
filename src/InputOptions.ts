@@ -6,7 +6,7 @@ export type InputOptionsSetup = {
   requiredOptions?: Record<string, unknown>
 }
 
-export type InputOptions<Setup extends InputOptionsSetup> = {
+export type InputOptions<Setup extends InputOptionsSetup = {}> = {
   defaultsType: Setup[`defaultsType`]
   merged: MergeThree<Setup[`defaultsType`], Partial<Setup[`optionalOptions`]>, Setup[`requiredOptions`]>
   optionalOptions: Partial<Setup[`optionalOptions`]>
