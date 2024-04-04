@@ -22,14 +22,13 @@
         "NODE_ENV": "development"
       },
       "output": [
-        "dist/package/more-types/development"
+        "dist/package/more-types/production"
       ],
       "files": [
         "src/**/*",
-        "rollup.config.js",
         "package.json"
       ],
-      "command": "node node_modules/rollup/dist/bin/rollup --config"
+      "command": "tsx x/build.ts"
     },
     "release": {
       "dependencies": [
@@ -55,6 +54,7 @@
     "fs-extra": "^11.2.0",
     "lodash-es": "^4.17.21",
     "tsconfig-jaid-node": "^8.1.0",
+    "tsx": "^4.7.1",
     "typescript": "^5.4.3"
   }
 }
